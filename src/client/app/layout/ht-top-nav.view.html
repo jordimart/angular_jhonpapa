@@ -1,0 +1,26 @@
+<nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <!--modifico logotipo en el header-->
+        <ul>
+            <li class="dropdown dropdown-big">
+                <a href="/"  target="_blank"><img class="logo" src="/images/findmenu_2.png"</a>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-collapse collapse" uib-collapse="isCollapsed">
+        <div class="pull-right navbar-logo">
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <!--referencia al autor, link a twiter-->
+                    <a ng-href="{{vm.navline.link}}" target="_blank">{{vm.navline.text}}</a>
+                </li>
+                <li class="dropdown dropdown-big">
+                    <a href="http://www.angularjs.org" target="_blank">
+                        <img src="images/AngularJS-small.png" />
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
