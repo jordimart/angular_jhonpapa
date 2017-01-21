@@ -3,7 +3,7 @@
 /*Css para la barra de navegación principal*/
 
 .logo{
-    padding:20px;
+    padding:10px;
 }
 
 nav.menu {
@@ -24,12 +24,13 @@ nav.menu ul li {
     float: left;
     font-size: 30px;
     padding:5px;
+    padding-top: 0px;
 
 }
 
 nav.menu ul li a {
     display: block; /* Convertimos los elementos a en elementos bloque para manipular el padding */
-    padding: 10px;
+    padding: 5px;
     color: #FFB03B;
     text-decoration:none; 
 

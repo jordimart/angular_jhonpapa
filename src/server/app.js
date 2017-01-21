@@ -18,7 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
-app.use('/api', require('./routes'));
+//importo routers de cada modulo
+require('./contact/contact.router.js')(app);
 
 console.log('About to crank up node');
 console.log('PORT=' + port);

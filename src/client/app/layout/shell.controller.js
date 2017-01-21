@@ -5,26 +5,18 @@
     .module('app.layout')
     .controller('ShellController', ShellController);
 
-  ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger'];
+  ShellController.$inject = ['$rootScope', '$timeout'];
   /* @ngInject */
-  function ShellController($rootScope, $timeout, config, logger) {
+  function ShellController($rootScope, $timeout) {
     var vm = this;
     vm.busyMessage = 'Please wait ...';
     vm.isBusy = true;
     $rootScope.showSplash = true;
     //pinta el nombre y un link atwiter del autor
-    vm.navline = {
-      title: config.appTitle,
-      text: 'Created by Gv.web.denvelopers',
-      link: 'https://twitter.com/findmenu1'
-    };
+    
 
-    activate();
-
-    function activate() {
-      logger.success(config.appTitle + ' loaded!', null);
-      hideSplash();
-    }
+    //mostramos barra de carga
+    hideSplash();
 
     function hideSplash() {
       //Force a 1 second delay so we can see the splash.
