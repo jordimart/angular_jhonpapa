@@ -1,53 +1,33 @@
-(function () {
-    'use strict';
+(function() {
+  'use strict';
 
-    angular
-            .module('app.core')
-            .factory('dataservice', dataservice);
+  angular
+    .module('app.core')
+    .factory('dataservice', dataservice);
 
-    dataservice.$inject = ['$http', '$q', 'exception', 'logger'];
-    /* @ngInject */
-    function dataservice($http, $q, exception, logger) {
-        var service = {
-            getPeople: getPeople,
-            getMessageCount: getMessageCount,
-            sendEmail: sendEmail
-        };
+  dataservice.$inject = ['$http', '$q', 'exception', 'logger'];
+  /* @ngInject */
+  function dataservice($http, $q, exception, logger) {
+    var service = {
+      sendEmail: sendEmail
+    };
 
-        return service;
+    return service;
 
-        function getMessageCount() {
-            return $q.when(72);
-        }
+    function sendEmail(data) {
 
-        function getPeople() {
-            return $http.get('/api/people')
-                    .then(success)
-                    .catch(fail);
+      return $http.post('/api/sendmail', data)
+        .then(success)
+        .catch(fail);
 
-            function success(response) {
-                return response.data;
-            }
+      function success() {
+        return true;
+      }
 
-            function fail(e) {
-                return exception.catcher('XHR Failed for getPeople')(e);
-            }
-        }
-
-        function sendEmail(data) {
-
-            return $http.post('/api/sendmail',data)
-                    .then(success)
-                    .catch(fail);
-
-            function success() {
-                return true;
-            }
-
-            function fail() {
-                return false;
-            }
-        }
+      function fail() {
+        return false;
+      }
     }
+  }
 
 })();

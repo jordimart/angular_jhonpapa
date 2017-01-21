@@ -12,8 +12,6 @@
     vm.busyMessage = 'Please wait ...';
     vm.isBusy = true;
     $rootScope.showSplash = true;
-    //pinta el nombre y un link atwiter del autor
-    
 
     //mostramos barra de carga
     hideSplash();
