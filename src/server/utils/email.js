@@ -6,7 +6,49 @@ exports.sendEmail = function(req, res) {
 
   //template contact recieve
 
-  var template = '<style>' +
+  switch (req.body.type) {
+    case 'user':
+      req.body.to = req.body.from;
+      var body = '<body>' +
+        '<div id="contact-email">' +
+        '<div> <h1>Contacto con Findmenu</h1> <h4>Sugerencia: ' + req.body.subject +
+        '</h4></div>' +
+        '<section>' +
+        'Nombre:<p>' + req.body.name + '</p>' +
+        'Email: <p>' + req.body.from + '</p>' +
+        'Mensaje:<p>' + req.body.text + '</p></section>' +
+        '</div>' +
+        ' </body>';
+
+      break;
+    case 'admin':
+
+      var body = '<body>' +
+        '<div id="contact-email">' +
+        '<div> <h1>Contacto con Findmenu</h1> <h4>Sugerencia: ' + req.body.subject +
+        '</h4></div>' +
+        '<section>' +
+        'Nombre:<p>' + req.body.name + '</p>' +
+        'Email: <p>' + req.body.from + '</p>' +
+        'Mensaje:<p>' + req.body.text + '</p></section>' +
+        '</div>' +
+        ' </body>';
+
+      break;
+    case 'modify':
+
+      break;
+    case 'signup':
+
+      break;
+
+  }
+
+  var template =
+    '<html>' +
+    '<head>' +
+    '<meta charset="utf-8" />' +
+    '<style>' +
     '* {' +
     'box-sizing: border-box;' +
     '-webkit-box-sizing: border-box;' +
@@ -51,16 +93,7 @@ exports.sendEmail = function(req, res) {
     ' padding-left: 3%;' +
     ' padding-right: 3%; } }' +
     '</style>' +
-    '<body>' +
-    '<div id="contact-email">' +
-    '<div> <h1>Contacto con Findmenu</h1> <h4>Sugerencia: ' + req.body.subject +
-    '</h4></div>' +
-    '<section>' +
-    '<p>Nombre:</p>' +
-    '<p>Email:' + req.body.from + '</p>' +
-    '<p>Mensaje:' + req.body.text + '</p></section>' +
-    '</div>' +
-    ' <body>';
+    '</head>' + body + '</html>';
 
   var email = {
     from: req.body.from,
@@ -73,7 +106,7 @@ exports.sendEmail = function(req, res) {
   //Input APIKEY Sendgrid
   var options = {
     auth: {
-      apiKey: sg
+      api_key: sg
     }
   };
   var mailer = nodemailer.createTransport(sgTransport(options));
